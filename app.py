@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, request
+from flask import Flask,redirect, request, render_template, request, url_for
 from flaskext.mysql import MySQL      # For newer versions of flask-mysql 
 # from flask.ext.mysql import MySQL   # For older versions of flask-mysql
 app = Flask(__name__)
@@ -23,9 +23,6 @@ cursor = conn.cursor()
 #def main():
 #    return "Welcome!"
 
-@app.route('/how are you')
-def hello():
-    return 'I am good, how about you?'
 
 @app.route("/",methods=['GET','POST'])
 def read():
@@ -38,21 +35,11 @@ def read():
     cursor.execute("SELECT * FROM students")
     records = cursor.fetchall()
     return render_template('index.html',data=records)
-#    name = []
-#    student_class = []
-#    age = []
-#    address = []
-#    i = 0
-#    send_records = []
-#    for row in records:
-#      send_records[i].append(row[0]+","+row[1]+","+row[2]+","+row[3]+"|")
-#      i=i+1
-#      student_class.append(row[1])
-#      age.append(row[2])
-#      address.append(row[3])
-#      row = cursor.fetchone()
-#    return records[1]
-#    return ",".join(address)
+
+@app.route('/delete/<string:name>', methods=['POST'])
+def remove(name):
+   cursor.execute("DELETE FROM students where name=%s",name)
+   return redirect (url_for('read'))
 
 if __name__ == "__main__":
     app.run()

@@ -30,7 +30,7 @@
                 <td>{{row[1]}}</td>
                 <td>{{row[2]}}</td>
                 <td>{{row[3]}}</td>
-                <td><button type="button">Delete</button>
+                <td><form action="/delete/{{row[0]}}" method="POST"><button type="submit">Delete</button></form>
             </tr>
         {% endfor %}
     </tbody>
