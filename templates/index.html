@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title></title>
+ <title>Student's Data</title>
 </head>
 <body>
 <style>
@@ -20,6 +20,7 @@
         <th>Class</th>
         <th>Age</th>
         <th>Address</th>
+        <th>Action</th>
     </tr>
     </thead>    
     <tbody>
@@ -29,9 +30,18 @@
                 <td>{{row[1]}}</td>
                 <td>{{row[2]}}</td>
                 <td>{{row[3]}}</td>
+                <td><button type="button">Delete</button>
             </tr>
         {% endfor %}
     </tbody>
-</table></body>
+</table>
+<form method="post">
+            <h2  style="color:#6666ff">Student Registration</h2>
+	    <input  style="padding:5px" type="text" name="name" placeholder="Name" required>
+	    <input  style="padding:5px" type="text" name="student_class" placeholder="Class" required>	<input style="padding:5px" placeholder="Age" name="age" required>
+	    <input style="padding:5px" placeholder="Address"  name="address" required>
+			
+<button  style="background-color:rgb(33,74,128);width:169px;border:none;color:white;padding:5px 10px 5px 10px;border-radius:2px;" type="submit">Add</button>			</form>
+</body>
 </html>
 
